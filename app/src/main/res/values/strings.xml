@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NetlogCase</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="permission_title">Permission Required</string>
+    <string name="permission_description">We need your permission to access camera in order to scan Id Card / Passport.</string>
+    <string name="button_ok">OK</string>
+
+</resources>
