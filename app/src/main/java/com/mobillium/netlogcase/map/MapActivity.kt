@@ -117,6 +117,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         {
             val callback = OnMapReadyCallback { googleMap ->
 
+                Globals.shared.Long = Newlongtitude
+                Globals.shared.Lat = Newlatitude
+
                 var loc = LatLng(Newlatitude!!, Newlongtitude!!)
                 googleMap.addMarker(MarkerOptions().position(loc).title(MarkerTitle))
                 googleMap.moveCamera(CameraUpdateFactory.newLatLng(loc))

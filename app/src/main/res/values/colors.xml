@@ -11,4 +11,10 @@
     <color name="blue">#01136E</color>
     <color name="aqua">#11EDED</color>
     <color name="gray">#E68A8A8A</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="profileViewpager">#444444</color>
+    <color name="crop">#832B2B2A</color>
+    <color name="transparentView">#66000000</color>
+
+
 </resources>

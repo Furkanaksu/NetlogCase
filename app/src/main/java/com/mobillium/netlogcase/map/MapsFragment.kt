@@ -14,23 +14,41 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.mobillium.netlogcase.R
+import com.mobillium.netlogcase.managers.Globals
 
 
 class MapsFragment : Fragment() {
 
     private val callback = OnMapReadyCallback { googleMap ->
 
-        val sydney = LatLng(41.112663, 29.021330)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in İstanbul"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-        googleMap.animateCamera(
-            CameraUpdateFactory.newLatLngZoom(
-                LatLng(
-                    41.112663,
-                    29.021330
-                ), 15.0f
+        if (Globals.shared.Lat != null)
+        {
+            val sydney = LatLng(Globals.shared.Lat!!, Globals.shared.Long!!)
+            googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in İstanbul"))
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+            googleMap.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    LatLng(
+                        Globals.shared.Lat!!,
+                        Globals.shared.Long!!
+                    ), 15.0f
+                )
             )
-        )
+        }
+        else
+        {
+            val sydney = LatLng(41.112663, 29.021330)
+            googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in İstanbul"))
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+            googleMap.animateCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    LatLng(
+                        41.112663,
+                        29.021330
+                    ), 15.0f
+                )
+            )
+        }
     }
 
     private val mMap: GoogleMap? = null

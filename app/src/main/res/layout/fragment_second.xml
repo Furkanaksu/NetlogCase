@@ -6,12 +6,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:mapbox="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.SecondFragment"
-    android:fillViewport="true"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -62,6 +61,7 @@
                     android:textSize="@dimen/_14sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:scrollbars = "vertical"
+                    android:maxLines="2"
                     />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -83,10 +83,12 @@
             android:background="@color/gray" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/line"
-            android:padding="@dimen/_10sdp">
+            android:padding="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_30sdp">
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/type"
@@ -210,23 +212,39 @@
                 app:layout_constraintStart_toEndOf="@+id/type2"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
+            <ImageView
+                android:id="@+id/croppedImage"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="12dp"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/type2"
+                app:layout_constraintTop_toBottomOf="@+id/openPdf" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
+            android:id="@+id/warning"
+            android:layout_marginTop="@dimen/_40sdp"
+            app:layout_constraintTop_toBottomOf="@+id/mid"
+            app:layout_constraintBottom_toTopOf="@+id/bottom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/bottom"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="Yükleme adresi sınırlarındasın"
             android:textSize="@dimen/_13sdp"
-            android:layout_marginBottom="@dimen/_10sdp"/>
+            android:layout_marginBottom="@dimen/_20sdp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/warning"
+            android:layout_marginTop="@dimen/_20sdp"
             android:background="@drawable/top_radius"
             android:padding="@dimen/_20sdp">
 

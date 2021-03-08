@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.mobillium.netlogcase.CameraActivity
 import com.mobillium.netlogcase.pdf.PdfActivity
 import com.mobillium.netlogcase.map.MapActivity
@@ -23,6 +24,7 @@ class SecondFragment : Fragment() {
     var city : TextView? = null
     var prov : TextView? = null
     var address : TextView? = null
+    var croppedImage : ImageView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,9 +32,10 @@ class SecondFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView: View = inflater.inflate(R.layout.fragment_second, container, false)
-       val mMapView = rootView.findViewById<FrameLayout>(R.id.mapView)
-       val openPdf = rootView.findViewById<ImageView>(R.id.openPdf)
-       val openCamera = rootView.findViewById<TextView>(R.id.openCamera)
+        val mMapView = rootView.findViewById<FrameLayout>(R.id.mapView)
+        val openPdf = rootView.findViewById<ImageView>(R.id.openPdf)
+        val openCamera = rootView.findViewById<TextView>(R.id.openCamera)
+        croppedImage = rootView.findViewById(R.id.croppedImage)
 
         openPdf.setOnClickListener {
             val i = Intent(context, PdfActivity::class.java)
@@ -44,10 +47,7 @@ class SecondFragment : Fragment() {
         address = rootView.findViewById(R.id.address)
 
 
-        activity!!.supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.mapView, MapsFragment())
-            .commit()
+
 
         mMapView.setOnClickListener {
             val i = Intent(context, MapActivity::class.java)
@@ -66,11 +66,24 @@ class SecondFragment : Fragment() {
 
     override fun onResume() {
 
+        activity!!.supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.mapView, MapsFragment())
+            .commit()
+
         if (!Globals.shared.City.isNullOrEmpty())
         {
             city?.text = Globals.shared.City
             prov?.text = Globals.shared.Prov
             address?.text = Globals.shared.Adress
+        }
+
+        if (Globals.shared.Cropped != null)
+        {
+            Glide.with(context!!)
+                .load(Globals.shared.Cropped)
+                .into(croppedImage!!)
+
         }
         super.onResume()
 
